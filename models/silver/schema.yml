@@ -1,0 +1,7 @@
+version: 2
+sources:
+    - name: source
+      database: E2E_DB
+      schema: BRONZE
+      tables:
+        - name: DEPT_SOURCE

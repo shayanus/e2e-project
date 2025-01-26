@@ -1,27 +1,22 @@
 
-{% macro macros_copy_csv(table_nm) %} 
+{% macro macros_copy_csv() %} 
 
-delete from {{var ('rawhist_db') }}.{{var ('wrk_schema')}}.{{ table_nm }};
+delete from {{var ('rawhist_db') }}.{{var ('wrk_schema')}}.DEPT_SOURCE;
 
-COPY INTO {{var ('rawhist_db') }}.{{var ('wrk_schema')}}.{{ table_nm }} 
+COPY INTO {{var ('rawhist_db') }}.{{var ('wrk_schema')}}.DEPT_SOURCE 
 FROM 
 (
 SELECT
-    $1 AS ProductId,
-    $2 AS ProductName,
-    $3 AS Category,
-    $4 AS SellingPrice,
-    $5 AS ModelNumber,
-    $6 AS AboutProduct,
-    $7 AS ProductSpecification,
-    $8 AS TechnicalDetails,
-    $9 AS ShippingWeight,
-    $10 AS ProductDimensions,
+    $1 AS Store,
+    $2 AS Dept,
+    $3 AS Date,
+    $4 AS Weekly_Sales,
+    $5 AS IsHoliday,
     CURRENT_TIMESTAMP() AS INSERT_DTS,
     CURRENT_TIMESTAMP() AS UPDATE_DTS,
     metadata$filename AS SOURCE_FILE_NAME,
     metadata$file_row_number AS SOURCE_FILE_ROW_NUMBER
-FROM @{{ var('stage_name') }}
+FROM @{{ var('stage_name') }}department.csv
 )
 FILE_FORMAT = {{var ('file_format_json') }}
 PURGE={{ var('purge_status') }}
