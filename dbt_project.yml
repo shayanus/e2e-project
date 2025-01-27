@@ -11,10 +11,10 @@ profile: 'default'
 
 vars:
    wrk_schema: BRONZE
-   file_format_json: E2E_DB.BRONZE.MY_CSV_FORMAT
+   file_format_csv: MYDB.BRONZE.MY_CSV_FORMAT
    purge_status: FALSE
-   stage_name: E2E_DB.BRONZE.E2E_STAGE/
-   rawhist_db: E2E_DB
+   stage_name: MYDB.BRONZE.E2E_STAGE/
+   rawhist_db: MYDB
 
 # These configurations specify where dbt should look for different types of files.
 # The `model-paths` config, for example, states that models in this project can be

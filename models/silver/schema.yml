@@ -1,7 +1,12 @@
 version: 2
 sources:
     - name: source
-      database: E2E_DB
+      database: MYDB
       schema: BRONZE
       tables:
-        - name: DEPT_SOURCE
+        - name: STORES_SOURCE
+    - name: xfm
+      database: MYDB
+      schema: SILVER
+      tables:
+        - name: Walmart_store_dim
