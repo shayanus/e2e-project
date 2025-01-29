@@ -5,8 +5,12 @@ sources:
       schema: BRONZE
       tables:
         - name: STORES_SOURCE
+        - name: DEPT_SOURCE
+        - name: FACT_SOURCE
     - name: xfm
-      database: MYDB
+      database: PC_DBT_DB
       schema: SILVER
       tables:
         - name: Walmart_store_dim
+        - name: Walmart_fact_dim
+        - name: Walmart_date_dim

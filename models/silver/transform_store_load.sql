@@ -1,19 +1,19 @@
 {{ config({ "materialized":'table',
  "transient":true,
  "alias":'Walmart_store_dim',
- "pre_hook": macros_copy_stores(),
  "schema": 'SILVER'
 })}}
-WITH store AS(
-SELECT 
-    Store AS Store,
-    Type AS Type,
-    Size AS Size,
-    INSERT_DTS AS INSERT_DTS,
-    UPDATE_DTS AS UPDATE_DTS,
-    SOURCE_FILE_NAME AS SOURCE_FILE_NAME,
-    SOURCE_FILE_ROW_NUMBER AS SOURCE_FILE_ROW_NUMBER
-FROM {{source('source','STORES_SOURCE')}}
+WITH store_dim AS(
+    SELECT
+        DISTINCT D.STORE AS Store_id,
+        D.DEPT AS Dept_id,
+        S.TYPE AS Store_type,
+        S.SIZE AS Store_size
+    FROM
+        {{source('source','DEPT_SOURCE')}} D
+    JOIN
+        {{source('source','STORES_SOURCE')}} S
+    ON D.STORE = S.STORE
 )
 SELECT *
-FROM store
+FROM store_dim
