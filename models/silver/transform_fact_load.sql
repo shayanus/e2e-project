@@ -1,7 +1,6 @@
 {{ config({ "materialized":'table',
  "transient":true,
  "alias":'Walmart_fact_dim',
- "pre_hook": macros_copy_fact(),
  "schema": 'SILVER'
 })}}
 WITH fact AS (
