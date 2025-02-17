@@ -17,5 +17,7 @@ WITH date_dim AS (
 SELECT 
     ROW_NUMBER() OVER (ORDER BY Store_date ASC) AS Date_id, 
     Store_date, 
-    ISHOLIDAY
+    ISHOLIDAY,
+    CURRENT_TIMESTAMP() AS INSERT_DTS,
+    CURRENT_TIMESTAMP() AS UPDATE_DTS
 FROM date_dim
