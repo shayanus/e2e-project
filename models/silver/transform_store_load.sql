@@ -8,7 +8,9 @@ WITH store_dim AS(
         DISTINCT D.STORE AS Store_id,
         D.DEPT AS Dept_id,
         S.TYPE AS Store_type,
-        S.SIZE AS Store_size
+        S.SIZE AS Store_size,
+        CURRENT_TIMESTAMP() AS INSERT_DTS,
+        CURRENT_TIMESTAMP() AS UPDATE_DTS
     FROM
         {{source('source','DEPT_SOURCE')}} D
     JOIN
