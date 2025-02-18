@@ -8,7 +8,7 @@ sources:
         - name: DEPT_SOURCE
         - name: FACT_SOURCE
     - name: xfm
-      database: PC_DBT_DB
+      database: E2E_DB
       schema: SILVER
       tables:
         - name: Walmart_store_dim
